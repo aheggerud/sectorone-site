@@ -9,6 +9,12 @@
 <meta property="og:description" content="Debriefs in minutes. Live AI insights. Offline-first. Works with MoTeC, Cosworth, AiM, VBOX.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0B0E14">
+<meta property="og:url" content="https://www.sectorone.ca">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SectorOne — Garage-First Data Ops for Motorsport Teams">
+<meta name="twitter:description" content="Debriefs in minutes. Live AI insights. Offline-first. Works with MoTeC, Cosworth, AiM, VBOX.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -80,8 +86,8 @@ a:hover{text-decoration:underline}
   <nav class="nav">
     <div class="inner container">
       <div class="logo">
-        <div class="logo-badge" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="logo-badge">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SectorOne logo">
             <defs>
               <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#7C93FF"/><stop offset="100%" stop-color="#66E4A8"/>
@@ -138,7 +144,7 @@ a:hover{text-decoration:underline}
         </div>
         <div class="card">
           <h3>Cross-media search</h3>
-          <div class="feature"><span class="icon">🔎</span><div>Query thresholds like “brake temp &gt; 600°C at T7” and retrieve synced video+data instantly.</div></div>
+            <div class="feature"><span class="icon">🔎</span><div>Query thresholds like "brake temp > 600°C at T7" and retrieve synced video+data instantly.</div></div>
           <div class="feature"><span class="icon">🏷️</span><div>Incident tagging for traffic, yellows, heat cycles. Mobile summaries for quick reviews.</div></div>
           <div class="feature"><span class="icon">📶</span><div>Garage-first offline design with safe sync when connectivity returns.</div></div>
         </div>
@@ -308,14 +314,14 @@ a:hover{text-decoration:underline}
       <div class="grid cols-2">
         <div class="card">
           <form onsubmit="event.preventDefault();thankYou();">
-            <label>Name</label>
-            <input required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
-            <label style="margin-top:8px">Team</label>
-            <input required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
-            <label style="margin-top:8px">Email</label>
-            <input type="email" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
-            <label style="margin-top:8px">Biggest headache</label>
-            <select style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label for="name">Name</label>
+            <input id="name" name="name" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label for="team" style="margin-top:8px">Team</label>
+            <input id="team" name="team" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label for="email" style="margin-top:8px">Email</label>
+            <input id="email" name="email" type="email" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label for="headache" style="margin-top:8px">Biggest headache</label>
+            <select id="headache" name="headache" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
               <option>Manual video sync</option>
               <option>Lost logs / naming</option>
               <option>Slow debriefs</option>
@@ -394,7 +400,18 @@ function updateROI(){
   document.getElementById('usdSaved').textContent=usdSaved.toLocaleString();
 }
 function thankYou(){
-  alert("Thanks! You're on the VIP waitlist. We'll reach out soon.");
+  const form = document.querySelector('form');
+  const button = form.querySelector('button');
+  const originalText = button.textContent;
+  button.textContent = "Thanks! We'll be in touch soon.";
+  button.disabled = true;
+  button.style.background = "linear-gradient(180deg,#1a3344,#14331f)";
+  setTimeout(() => {
+    button.textContent = originalText;
+    button.disabled = false;
+    button.style.background = "";
+    form.reset();
+  }, 3000);
 }
 updateROI();
 document.getElementById('year').textContent = new Date().getFullYear();
