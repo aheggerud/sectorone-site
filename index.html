@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SectorOne — Garage-First Data Ops for Motorsport Teams</title>
+<meta name="description" content="SectorOne unifies telemetry, video, GPS & notes. Auto-generated debriefs in minutes, AI live insights for race engineers, and mobile-ready executive dashboards.">
+<meta property="og:title" content="SectorOne — Garage-First Data Ops for Motorsport Teams">
+<meta property="og:description" content="Debriefs in minutes. Live AI insights. Offline-first. Works with MoTeC, Cosworth, AiM, VBOX.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0E14">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E14;--fg:#EEF2FF;--muted:#AAB1C5;--accent:#7C93FF;--accent2:#66E4A8;--warn:#F59F00;--stroke:#2A355D;
+  --card:rgba(255,255,255,.03);--card2:rgba(255,255,255,.05);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,14,20,.9),rgba(11,14,20,.6));backdrop-filter:blur(8px);border-bottom:1px solid rgba(124,147,255,.15)}
+.nav .inner{display:flex;align-items:center;gap:24px;justify-content:space-between;padding:12px 24px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:32px;height:32px;border-radius:10px;border:1px solid rgba(124,147,255,.25);display:grid;place-items:center}
+.logo-badge svg{width:22px;height:22px}
+.nav a{color:var(--fg);opacity:.9}
+.nav .menu{display:flex;gap:18px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:12px;border:1px solid rgba(124,147,255,.25);background:linear-gradient(180deg,var(--card2),rgba(255,255,255,.02));color:var(--fg);font-weight:600}
+.btn.primary{background:linear-gradient(180deg,#1a2244,#141a33);border-color:#3a4a8f}
+.btn.accent{background:linear-gradient(180deg,#1a3344,#14331f);border-color:#356f57}
+.btn:hover{transform:translateY(-1px)}
+.hero{padding:80px 24px;background:
+ radial-gradient(900px 500px at 80% -10%, #1a2140 0%, rgba(11,14,20,0) 60%),
+ radial-gradient(600px 400px at 0% 0%, #11222a 0%, rgba(11,14,20,0) 55%)}
+.hero h1{font-size:clamp(2rem,4vw,3.6rem);margin:0 0 12px}
+.hero p.lead{color:var(--muted);font-size:clamp(1rem,1.6vw,1.2rem);max-width:950px}
+.hero .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+.grid{display:grid;gap:18px}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+.card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,.01));border:1px solid rgba(124,147,255,.15);border-radius:16px;padding:18px}
+.card h3{margin:0 0 8px}
+.kicker{display:inline-block;padding:4px 8px;border:1px solid var(--stroke);border-radius:999px;color:#CFD6FF;font-size:.85rem}
+.section{padding:64px 24px;border-top:1px solid rgba(124,147,255,.12)}
+.section h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.2rem)}
+.section p.sub{color:var(--muted);margin:0 0 18px}
+.list{padding-left:18px;margin:0}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px;border-bottom:1px dashed var(--stroke);text-align:left}
+.badge{display:inline-block;background:#1f2a4a;border:1px solid #33406b;padding:2px 8px;border-radius:8px;font-size:.8rem;color:#cfe1ff;margin-right:6px}
+.icon{width:24px;height:24px;display:inline-block;vertical-align:middle}
+.feature{display:flex;gap:12px;align-items:flex-start}
+.feature .icon{flex:0 0 24px}
+.pricing .plan{display:flex;flex-direction:column;gap:10px}
+.price{font-size:2rem;font-weight:800}
+.small{font-size:.9rem;color:var(--muted)}
+.note{color:var(--muted);font-style:italic}
+.faq-item{border:1px solid rgba(124,147,255,.15);border-radius:12px;padding:12px;background:var(--card);margin-bottom:10px}
+.faq-item h4{margin:0;cursor:pointer}
+.hidden{display:none}
+.footer{padding:40px 24px;border-top:1px solid rgba(124,147,255,.12);color:var(--muted)}
+@media (max-width:900px){
+  .cols-2,.cols-3,.cols-4{grid-template-columns:1fr}
+  .hero{padding-top:48px}
+}
+/* ROI widget */
+.roi{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.roi .panel{padding:14px;border:1px solid rgba(124,147,255,.15);border-radius:12px;background:var(--card)}
+.roi label{display:block;margin:8px 0 4px}
+.roi input[type="number"], .roi input[type="range"]{width:100%}
+.roi .result{font-size:1.25rem}
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="inner container">
+      <div class="logo">
+        <div class="logo-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7C93FF"/><stop offset="100%" stop-color="#66E4A8"/>
+              </linearGradient>
+            </defs>
+            <path d="M6 20 C 16 10 48 10 58 20" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M6 44 C 16 54 48 54 58 44" stroke="url(#g)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M56 14 L56 50" stroke="#EEF2FF" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <strong>SectorOne</strong>
+        <span class="badge">Beta</span>
+      </div>
+      <div class="menu">
+        <a href="#features">Features</a>
+        <a href="#live">Live AI</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#roi">ROI</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="#waitlist">Join VIP Waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="kicker">Garage-first data ops</span>
+      <h1>Debriefs in minutes. Live AI race insights. <br>One timeline for telemetry, video, GPS & notes.</h1>
+      <p class="lead">SectorOne is the ops-glue for GT teams. We auto-ingest MoTeC, Cosworth, AiM & VBOX, generate debrief packs in under 7 minutes, and keep versioned setups/run-sheets with season memory. Offline-first for the paddock; shareable, mobile-ready for management.</p>
+      <div class="cta">
+        <a class="btn primary" href="#waitlist">Join VIP Waitlist</a>
+        <a class="btn" href="#how">See how it works</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="section">
+    <div class="container">
+      <h2>What SectorOne does</h2>
+      <p class="sub">Analysis + organization + collaboration — the missing ops layer your telemetry tools don’t provide.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Auto debriefs in 5–7 minutes</h3>
+          <div class="feature"><span class="icon">📈</span><div>Lap deltas, driver input overlays, stint degradation, tire temp/pressure envelopes.</div></div>
+          <div class="feature"><span class="icon">🎬</span><div>Video synced to telemetry & GPS with zero manual alignment.</div></div>
+          <div class="feature"><span class="icon">🗂️</span><div>Export & share as a dashboard or one-pager after every session.</div></div>
+        </div>
+        <div class="card">
+          <h3>Versioned setups & workbooks</h3>
+          <div class="feature"><span class="icon">🔐</span><div>Git-like diffs for setups, run-sheets & MoTeC/Cosworth workbooks with approval flow.</div></div>
+          <div class="feature"><span class="icon">🧭</span><div>Audit trails & RBAC. Manufacturer/customer partitions for selective sharing.</div></div>
+          <div class="feature"><span class="icon">🧠</span><div>Season memory to spot setup drift & condition sensitivity.</div></div>
+        </div>
+        <div class="card">
+          <h3>Cross-media search</h3>
+          <div class="feature"><span class="icon">🔎</span><div>Query thresholds like “brake temp &gt; 600°C at T7” and retrieve synced video+data instantly.</div></div>
+          <div class="feature"><span class="icon">🏷️</span><div>Incident tagging for traffic, yellows, heat cycles. Mobile summaries for quick reviews.</div></div>
+          <div class="feature"><span class="icon">📶</span><div>Garage-first offline design with safe sync when connectivity returns.</div></div>
+        </div>
+      </div>
+      <div class="note" style="margin-top:8px">Integrations: MoTeC i2/Video, Cosworth Pi Toolbox, AiM Race Studio/SmartyCam, VBOX Circuit Tools (import/export where applicable).</div>
+    </div>
+  </section>
+
+  <section id="live" class="section">
+    <div class="container">
+      <h2>Live analysis & AI — for the race engineer</h2>
+      <p class="sub">From reactive data-wrangling to proactive decisions — during the stint.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Engineer Copilot</h3>
+          <ul class="list">
+            <li>Live input deviation highlights vs. reference lap (throttle, brake, steering).</li>
+            <li>Predictive tire/fuel alerts based on last N laps (e.g., “rears out of window in 3 laps”).</li>
+            <li>Setup sensitivity surfaces: camber↔tire temps, wing↔sector speeds, pressures↔deg.</li>
+            <li>Instant queries: “Compare Driver A vs B at T7” → overlay generated in seconds.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Executive Mobile View</h3>
+          <ul class="list">
+            <li>Simple green/red indicators for pace vs. target, tire health, fuel vs. stint plan.</li>
+            <li>Actionable phrasing: “+0.3s if Driver 2 increases brake pressure by 8% in T1.”</li>
+            <li>Secure, role-based sharing for team managers, OEM reps & sponsors.</li>
+            <li>Works offline; syncs automatically when back online.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <div class="container">
+      <h2>How it works</h2>
+      <p class="sub">Local agent in the garage + secure cloud — built for reliability first.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>1) Ingest & Normalize</h3>
+          <p>Watch folders on the garage laptop ingest i2/CSV/VBO/video. We enforce units, align clocks, and map to a canonical event schema: <em>session key, car, driver, compound, weather, timestamp</em>.</p>
+        </div>
+        <div class="card">
+          <h3>2) Store & Version</h3>
+          <p>Time-series DB for channels, S3-class object storage for binaries, Postgres for metadata. Git-like versioning for setups/workbooks with human-readable diffs.</p>
+        </div>
+        <div class="card">
+          <h3>3) Automate & Share</h3>
+          <p>Serverless jobs generate debrief packs; cross-media search indexes let you retrieve moments in context. RBAC & audit make sharing safe.</p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3>Reliability & Security</h3>
+        <ul class="list">
+          <li>Garage-first offline cache and resumable sync queues with conflict resolution.</li>
+          <li>Immutable event records; audit trails; least-privilege RBAC; SSO options.</li>
+          <li>Data residency & team partitions; encryption in transit and at rest.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="personas" class="section">
+    <div class="container">
+      <h2>Who it’s for</h2>
+      <div class="grid cols-4">
+        <div class="card"><h3>Race Engineer</h3><p>Minutes-to-insight debriefs, live alerts, and instant overlays to make the next call with confidence.</p></div>
+        <div class="card"><h3>Driver & Coach</h3><p>Clear input overlays with synced video to replicate best laps and tighten consistency.</p></div>
+        <div class="card"><h3>Team Manager</h3><p>Secure sharing, RBAC, and simple mobile dashboards for fast, clear decisions.</p></div>
+        <div class="card"><h3>OEM/Customer Program</h3><p>Partitioned access, season memory, and consistent artifacts across customer teams.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section pricing">
+    <div class="container">
+      <h2>Pricing & Packaging</h2>
+      <p class="sub">Per car per season, with multi-car discounts. Pilot and series/OEM bundles available.</p>
+      <div class="grid cols-3">
+        <div class="card plan">
+          <h3>Standard — GT3/GT4</h3>
+          <div class="price">$3k–$7k</div>
+          <div class="small">per car / season</div>
+          <ul class="list">
+            <li>Auto debriefs & cross-media sync</li>
+            <li>Versioned setups & workbooks</li>
+            <li>RBAC, audit, offline-first</li>
+          </ul>
+        </div>
+        <div class="card plan">
+          <h3>Series / OEM</h3>
+          <div class="price">Custom</div>
+          <div class="small">program bundle</div>
+          <ul class="list">
+            <li>Fleet templates & coaching packs</li>
+            <li>Provisioning at tech inspection</li>
+            <li>Wholesale or revenue-share</li>
+          </ul>
+        </div>
+        <div class="card plan">
+          <h3>Entry — Enduro/Rally</h3>
+          <div class="price">$500–$1.5k</div>
+          <div class="small">per car / season</div>
+          <ul class="list">
+            <li>Core ingest + templated reports</li>
+            <li>Mobile summaries</li>
+            <li>Add-ons for video sync/models</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Payback target: 1–2 race weekends via time saved and reduced setup errors.</p>
+    </div>
+  </section>
+
+  <section id="roi" class="section">
+    <div class="container">
+      <h2>ROI estimator</h2>
+      <p class="sub">Estimate engineer hours saved per weekend when debriefs drop from 45–60 minutes to ~7 minutes.</p>
+      <div class="roi">
+        <div class="panel">
+          <label>Sessions per weekend</label>
+          <input id="sessions" type="range" min="4" max="16" value="8" oninput="updateROI()">
+          <div><span id="sessionsVal">8</span> sessions</div>
+          <label>Current debrief time (min)</label>
+          <input id="current" type="range" min="30" max="90" value="60" oninput="updateROI()">
+          <div><span id="currentVal">60</span> minutes</div>
+          <label>Engineer hourly rate (USD)</label>
+          <input id="rate" type="number" min="20" max="300" value="100" oninput="updateROI()">
+        </div>
+        <div class="panel">
+          <div class="result"><strong>Time saved:</strong> <span id="minsSaved">-</span> minutes / weekend</div>
+          <div class="result"><strong>Cost saved:</strong> $<span id="usdSaved">-</span> / weekend</div>
+          <p class="small">Assumes SectorOne debriefs ≈ 7 min/session. Does not include avoided setup errors, tire life improvements, or faster driver convergence.</p>
+          <div style="margin-top:12px"><a class="btn accent" href="#waitlist">Get pilot pricing</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" class="section">
+    <div class="container">
+      <h2>How we compare</h2>
+      <p class="sub">Telemetry tools are excellent at analysis; SectorOne adds the missing ops layer.</p>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>Vendor</th><th>Telemetry depth</th><th>Video sync</th><th>Versioning</th><th>Cross-media search</th><th>Garage/offline</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MoTeC i2 (+Video)</td><td>High</td><td>Med</td><td>Low</td><td>Low</td><td>Med</td><td>Best-in-class analysis; limited ops glue</td></tr>
+            <tr><td>Cosworth Pi Toolbox</td><td>High</td><td>Low-Med</td><td>Low</td><td>Low</td><td>Med</td><td>Pro tooling; heavier setup</td></tr>
+            <tr><td>AiM RS3 + SmartyCam</td><td>Med</td><td>Med</td><td>Low</td><td>Low</td><td>High</td><td>Accessible; collaboration weak</td></tr>
+            <tr><td>VBOX Circuit Tools</td><td>Low-Med</td><td>High</td><td>Low</td><td>Low</td><td>High</td><td>Video-centric; narrow telemetry</td></tr>
+            <tr><td><strong>SectorOne</strong></td><td>Med-High</td><td><strong>High</strong></td><td><strong>High</strong></td><td><strong>High</strong></td><td><strong>High</strong></td><td>Ops glue: ingestion → automation → memory</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="section">
+    <div class="container">
+      <h2>Join the VIP waitlist</h2>
+      <p class="sub">Early access launches Q1 2026. Founder-led onboarding. Limited pilot slots for GT4/GT3, Radical & club enduro/rally.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <form onsubmit="event.preventDefault();thankYou();">
+            <label>Name</label>
+            <input required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label style="margin-top:8px">Team</label>
+            <input required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label style="margin-top:8px">Email</label>
+            <input type="email" required style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+            <label style="margin-top:8px">Biggest headache</label>
+            <select style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:var(--card);color:var(--fg)">
+              <option>Manual video sync</option>
+              <option>Lost logs / naming</option>
+              <option>Slow debriefs</option>
+              <option>Mixed tools (MoTeC/AiM/VBOX)</option>
+              <option>Sharing / RBAC</option>
+            </select>
+            <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+              <button class="btn primary" type="submit">Request Early Access</button>
+              <span class="small">We respect your privacy. No spam.</span>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <h3>What to expect</h3>
+          <ul class="list">
+            <li>Personal outreach from the founder to understand your stack (MoTeC/AiM/VBOX/Cosworth).</li>
+            <li>Hands-on install (days, not weeks). No car-side changes.</li>
+            <li>Two-event pilot to prove value: debrief time ≤ 7 min; setup error rate ↓ 50%.</li>
+            <li>Trackside support during pilots; templates tuned to your series.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h4 onclick="toggleFaq(this)">Does SectorOne replace MoTeC or Cosworth?</h4>
+        <div class="hidden"><p>No. Those are best-in-class analysis tools. SectorOne is the ops layer on top: ingestion, sync, versioning, automation, collaboration and season memory. We import/export to preserve your existing workflows.</p></div>
+      </div>
+      <div class="faq-item">
+        <h4 onclick="toggleFaq(this)">Is it offline-capable for paddock use?</h4>
+        <div class="hidden"><p>Yes. The local agent caches data and generates reports without internet. Sync is resumable and conflict-tolerant when connectivity returns.</p></div>
+      </div>
+      <div class="faq-item">
+        <h4 onclick="toggleFaq(this)">How long to install?</h4>
+        <div class="hidden"><p>Typical pilot install is measured in days. Watch-folder ingest means you won’t touch car-side hardware.</p></div>
+      </div>
+      <div class="faq-item">
+        <h4 onclick="toggleFaq(this)">Which series/segments are supported first?</h4>
+        <div class="hidden"><p>GT4/GT3 privateers in NA & EU first; then Radical/one-make, and club endurance/rally. LMP3/TCR are on the expansion path.</p></div>
+      </div>
+      <div class="faq-item">
+        <h4 onclick="toggleFaq(this)">What about security & data governance?</h4>
+        <div class="hidden"><p>RBAC with audit trails, immutable event records, manufacturer/customer partitions, and data residency options. Encryption in transit and at rest.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+        <div>© <span id="year"></span> SectorOne. All rights reserved.</div>
+        <div class="small">Built for GT paddocks. Works with MoTeC, Cosworth, AiM, VBOX.</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+function toggleFaq(h){
+  const content=h.nextElementSibling;
+  content.classList.toggle('hidden');
+}
+function updateROI(){
+  const sessions = +document.getElementById('sessions').value;
+  const current = +document.getElementById('current').value;
+  const rate = +document.getElementById('rate').value;
+  document.getElementById('sessionsVal').textContent=sessions;
+  document.getElementById('currentVal').textContent=current;
+  const sectorOne = 7; // minutes
+  const minsSaved = Math.max(0, (current - sectorOne) * sessions);
+  const usdSaved = Math.round((minsSaved/60) * rate);
+  document.getElementById('minsSaved').textContent=minsSaved.toLocaleString();
+  document.getElementById('usdSaved').textContent=usdSaved.toLocaleString();
+}
+function thankYou(){
+  alert("Thanks! You're on the VIP waitlist. We'll reach out soon.");
+}
+updateROI();
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
