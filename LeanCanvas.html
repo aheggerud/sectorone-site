@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SectorOne — Lean Canvas (Detailed)</title>
+<style>
+  :root{
+    --bg:#0b1220; --panel:#131c2f; --muted:#8aa0c8; --text:#e9eefc; --accent:#35c3ff;
+    --bd:rgba(255,255,255,.10); --gap:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; padding:28px; color:var(--text);
+    background:linear-gradient(180deg,#0b1220 0%,#0d1630 100%);
+    font:14px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+  header{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:0 0 18px}
+  h1{margin:0;font-size:clamp(22px,3vw,34px);letter-spacing:.2px}
+  .tagline{color:var(--muted);font-size:13.5px}
+  .grid{
+    display:grid; gap:var(--gap);
+    grid-template-columns:repeat(3,1fr);
+  }
+  .cell{
+    background:var(--panel); border:1px solid var(--bd); border-radius:12px;
+    padding:16px 16px 18px; display:flex; flex-direction:column; gap:10px;
+    box-shadow:0 8px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .cell h3{margin:0;color:var(--accent);font-weight:700;letter-spacing:.6px;text-transform:uppercase;font-size:16px}
+  .cell .hint{color:var(--muted);font-size:12.5px;margin-top:-2px}
+  .cell ul{margin:0;padding-left:18px}
+  .cell li{margin:6px 0}
+  .badge{display:inline-block;padding:2px 8px;border:1px solid var(--bd);border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px}
+  .uvp{
+    border:1px solid rgba(53,195,255,.28); background:rgba(53,195,255,.10);
+    padding:12px;border-radius:10px
+  }
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{display:grid;grid-template-columns:auto 1fr;gap:8px 10px}
+  .kpi b{color:#cfe6ff}
+  footer{margin-top:18px;color:var(--muted);font-size:12px}
+  /* Print */
+  @media print{
+    body{background:#fff;color:#111;padding:0}
+    .cell{background:#fff;border-color:#ccd6e6;box-shadow:none}
+    .uvp{background:#eef7ff;border-color:#bfe6ff}
+    .tagline, footer{color:#334155}
+  }
+  /* Stack on small screens */
+  @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <header>
+    <h1>SectorOne — Lean Canvas</h1>
+    <div class="tagline">Garage-first data ops wrapper for MoTeC • Cosworth • AiM • VBOX — NA &amp; EU privateer focus</div>
+  </header>
+
+  <div class="grid">
+    <!-- Row 1 -->
+    <section class="cell">
+      <h3>Problem</h3>
+      <ul>
+        <li><b>Fragmented tools &amp; formats:</b> Teams juggle MoTeC, Cosworth Pi, AiM, VBOX — proprietary, non-interoperable formats; steep learning curves and manual conversions.</li>
+        <li><b>Time-crunch post-session:</b> 30–60 minutes of manual copying, syncing video ↔ telemetry, file renaming; slow “time-to-insight.”</li>
+        <li><b>No single timeline:</b> Telemetry, video, GPS, and notes live in silos; manual alignment leads to missed context and slower driver coaching.</li>
+        <li><b>No versioning / season memory:</b> Setups, workbooks, and baselines scattered across laptops; naming inconsistencies; learnings get lost through the season.</li>
+        <li><b>Sharing &amp; access pain:</b> Hard to share with coaches/guest drivers; lack of RBAC; everyone needs vendor software; mixed-hardware teams struggle.</li>
+        <li><b>Garage reliability issues:</b> Flaky power/network; failed transfers/USBs; limited IT support at the track; need offline-first, “just works” workflows.</li>
+      </ul>
+      <div class="hint">Outcome: decision latency, errors (wrong baselines, lost logs), and wasted engineer time.</div>
+    </section>
+
+    <section class="cell">
+      <h3>Customer Segments</h3>
+      <ul>
+        <li><span class="badge">Primary early adopters</span> GT3/GT4 privateers (SRO, IMSA GS, British GT, NLS, regionals) — 1–3 car teams, lean engineering staff.</li>
+        <li>Radical one-make, TCR, LMP3, grassroots endurance/rally (ChampCar, Lemons, 24H series) with similar workflow constraints.</li>
+        <li><span class="badge">Secondary</span> OEM customer programs &amp; multi-car teams; factory later.</li>
+        <li><b>Buyer:</b> Team manager / performance engineer. <b>Users:</b> engineers, drivers, strategists, OEM support.</li>
+        <li><b>Geo:</b> North America &amp; Europe to start; series schedules dictate cadence and support model.</li>
+      </ul>
+    </section>
+
+    <section class="cell">
+      <h3>Unique Value Proposition</h3>
+      <div class="uvp">
+        <b>“All your race data — unified, fast, and in sync.”</b> SectorOne is the <em>garage-first data ops platform</em> that wraps MoTeC/Cosworth/AiM/VBOX:
+        a single timeline for telemetry, video, GPS &amp; notes; <b>instant debriefs</b>, <b>live AI insights</b>, and <b>season memory</b> — with <b>zero car-side changes</b>.
+      </div>
+      <ul>
+        <li><b>One platform, any logger:</b> Normalize channels/units; compare across cars/vendors without format pain.</li>
+        <li><b>Faster decisions:</b> automate import, sync, overlays, and reports; engineers analyze instead of wrangling files.</li>
+        <li><b>Beyond telemetry:</b> rich cross-media context improves coaching &amp; setup choices.</li>
+        <li><b>Built for privateers:</b> offline-capable, simple deployment, safe cloud sync later.</li>
+      </ul>
+    </section>
+
+    <!-- Row 2 -->
+    <section class="cell">
+      <h3>Solution</h3>
+      <ul>
+        <li><b>Universal ingest &amp; normalization:</b> watch-folders for i2/CSV/VBO/video; canonical event schema (session key, car, driver, compound, weather, timestamps); enforce units &amp; clock.</li>
+        <li><b>Cross-media timeline:</b> telemetry + onboard video + GPS + annotations in perfect sync; timestamped coach/driver notes, incident tags.</li>
+        <li><b>Artifact versioning:</b> Git-like repo for setups/run sheets/workbooks; human-readable diffs; approvals; link snapshots of telemetry to each change.</li>
+        <li><b>Post-session automation:</b> lap deltas, driver overlays, stint degradation, tire envelopes; auto-publish dashboards &amp; one-page PDFs minutes after the flag.</li>
+        <li><b>RBAC &amp; sharing:</b> role spaces (driver/engineer/manager/OEM), secure links, audit logs, easy off-boarding; mobile summaries for managers.</li>
+        <li><b>Season memory:</b> trend drift &amp; condition sensitivity (track temp, wind, fuel load, compound); quick recall of prior event baselines.</li>
+        <li><b>Garage reliability:</b> offline-first agent, local cache, conflict-free sync queues, prioritized uploads (telemetry before video).</li>
+      </ul>
+    </section>
+
+    <section class="cell">
+      <h3>Channels</h3>
+      <ul>
+        <li><b>Trackside pilots &amp; paddock referral:</b> live demos at SRO/IMSA test days; embed with 2–3 beta teams.</li>
+        <li><b>OEM programs:</b> partner with customer racing (Porsche, Audi, HPD) to recommend to privateers.</li>
+        <li><b>Resellers &amp; consultants:</b> data hardware shops &amp; freelance data engineers bundle/upsell the platform.</li>
+        <li><b>Communities &amp; content:</b> webinars, case studies (“debriefs in 5–7 min”), YourDataDriven/HPA style tutorials.</li>
+        <li><b>Trade shows:</b> PRI (US), Autosport (UK); tech talks, live telemetry sync demos.</li>
+        <li><b>Direct outbound:</b> targeted series entry lists; founder-led sales for lighthouse wins.</li>
+      </ul>
+    </section>
+
+    <section class="cell">
+      <h3>Revenue Streams</h3>
+      <ul>
+        <li><b>SaaS per car / season:</b> $3k–$7k baseline; volume discounts for multi-car teams.</li>
+        <li><b>Tiers:</b> Standard (core ingest/reporting) • Pro (video sync, advanced analytics, collaboration) • Elite (custom models, priority support).</li>
+        <li><b>OEM/program deals:</b> $25k–$50k per program; bulk licensing for customer teams.</li>
+        <li><b>Trackside services:</b> paid “race-weekend package,” custom integrations.</li>
+        <li><b>Storage/usage tiers:</b> included GB with overages for heavy video/long seasons.</li>
+        <li><b>Future upsell:</b> anonymized benchmarks &amp; driver development insights (opt-in).</li>
+      </ul>
+    </section>
+
+    <!-- Row 3 -->
+    <section class="cell">
+      <h3>Cost Structure</h3>
+      <ul>
+        <li><b>Engineering:</b> ingestion connectors (MoTeC/AiM/Cosworth/VBOX), time-series infra, UI, collaboration, QA.</li>
+        <li><b>Cloud:</b> object storage (video, logs), TSDB, compute for reports/ML; bandwidth.</li>
+        <li><b>Trackside ops:</b> pilot support, travel kits, demo rigs; documentation &amp; training.</li>
+        <li><b>Sales/marketing:</b> events, partners, content, ads; founder-led early to contain CAC.</li>
+        <li><b>Customer success:</b> responsive support &amp; on-call during race weekends.</li>
+        <li><b>G&amp;A &amp; legal:</b> data rights, contracts, insurance; partnership fees if any.</li>
+      </ul>
+    </section>
+
+    <section class="cell">
+      <h3>Key Metrics</h3>
+      <div class="twocol">
+        <ul>
+          <li><b>Time-to-report</b> after checkered flag (goal &lt; 10 min).</li>
+          <li><b>Adoption:</b> active cars/teams, sessions uploaded per weekend.</li>
+          <li><b>Feature usage:</b> % sessions with video sync, # cross-media queries, setup diff views.</li>
+        </ul>
+        <ul>
+          <li><b>Reliability:</b> weekend reliability score; error/rollback rates on setups.</li>
+          <li><b>Retention &amp; expansion:</b> season renewals, cars per team, OEM program wins.</li>
+          <li><b>Onboarding friction:</b> time to first upload; support ticket volume.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cell">
+      <h3>Unfair Advantage</h3>
+      <ul>
+        <li><b>Any-logger integration moat:</b> broad converter/normalizer library across MoTeC/AiM/Cosworth/Bosch/VBOX — hard to replicate.</li>
+        <li><b>Unified repository &amp; lock-in:</b> telemetry + video + notes + setups with history; teams’ institutional memory lives here.</li>
+        <li><b>Offline-first architecture:</b> garage-reliable edge agent + conflict-free sync; not trivial for cloud-only rivals.</li>
+        <li><b>Domain focus:</b> built specifically for privateer workflows; faster iteration on niche needs.</li>
+        <li><b>Network effects (future):</b> optional anonymized benchmarks/insights as user base grows.</li>
+        <li><b>Partnerships:</b> OEM/customer-racing endorsements; reseller/consultant channel leverage.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    Lean Canvas © SectorOne • Print via your browser (File → Print) to export as PDF • v1.0
+  </footer>
+</body>
+</html>
